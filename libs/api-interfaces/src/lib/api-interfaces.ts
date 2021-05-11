@@ -6,21 +6,21 @@ export interface BaseEntity {
 export interface Artist extends BaseEntity {
   title: string;
   genre: string;
-  description: string;
   yearsActive: string;
   labels?: Label[];
   albums?: Album[];
-  songs: Song[];
-  members?: string;
+  singles?: Singles[];
+  members?: string[];
 }
 
 export interface Album extends BaseEntity {
   title: string;
-  songs: Song[];
-  awards?: string;
+  songs: string[];
+  awards?: string[];
+  year: string;
 }
 
-export interface Song extends BaseEntity {
+export interface Singles extends BaseEntity {
   title: string;
   duration: string;
   bpm: string;
