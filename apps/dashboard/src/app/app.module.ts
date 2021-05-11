@@ -8,10 +8,26 @@ import { ArtistsComponent } from './artists/artists.component';
 import { ArtistDetailsComponent } from './artists/artist-details/artist-details.component';
 import { ArtistsListComponent } from './artists/artists-list/artists-list.component';
 import { HomeComponent } from './home/home.component';
+import { MaterialModule } from '@bba/material';
+import { FormsModule } from '@angular/forms';
+import { RoutingModule } from './routing.module';
 
 @NgModule({
-  declarations: [AppComponent, ArtistsComponent, ArtistDetailsComponent, ArtistsListComponent, HomeComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, StoreModule.forRoot({}, {})],
+  declarations: [
+    AppComponent,
+    ArtistsComponent,
+    ArtistDetailsComponent,
+    ArtistsListComponent,
+    HomeComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    RoutingModule,
+    StoreModule.forRoot({}, {}),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

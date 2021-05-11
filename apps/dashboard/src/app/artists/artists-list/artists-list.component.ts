@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Artist } from '@bba/api-interfaces';
 
 @Component({
   selector: 'bba-artists-list',
   templateUrl: './artists-list.component.html',
-  styleUrls: ['./artists-list.component.scss']
+  styleUrls: ['./artists-list.component.scss'],
 })
-export class ArtistsListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class ArtistsListComponent {
+  @Input() artists: Artist[];
+  @Input() readonly = false;
+  @Output() selected = new EventEmitter();
+  @Output() deleted = new EventEmitter();
 }

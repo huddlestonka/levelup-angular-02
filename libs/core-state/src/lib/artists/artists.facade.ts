@@ -6,6 +6,8 @@ import * as ArtistsActions from './artists.actions';
 import * as ArtistsFeature from './artists.reducer';
 import * as ArtistsSelectors from './artists.selectors';
 import { Artist } from '@bba/api-interfaces';
+import { BehaviorSubject } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 const artists: Artist[] = [
   {
@@ -102,6 +104,14 @@ const artists: Artist[] = [
 
 @Injectable()
 export class ArtistsFacade {
+  private artistsSubject: BehaviorSubject<Artist[]> = new BehaviorSubject(
+    artists
+  );
+  currentArtists$ = this.artistsSubject.asObservable();
+  private selectedArtistSubject: BehaviorSubject<Artist> = new BehaviorSubject(
+    null
+  );
+  selectedArtist$ = this.selectedArtistSubject.asObservable();
   /**
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.
@@ -118,5 +128,34 @@ export class ArtistsFacade {
    */
   init() {
     this.store.dispatch(ArtistsActions.init());
+  }
+
+  selectArtist(selectedArtist: Artist) {
+    this.selectedArtistSubject.next(selectedArtist);
+  }
+
+  createArtist(artist: Artist) {
+    const artists: Artist[] = this.artistsSubject.value;
+    const newArtist = Object.assign({}, artist, { id: uuidv4() });
+    const updatedArtists: Artist[] = [...artists, newArtist];
+    this.update(updatedArtists);
+  }
+
+  updateArtist(artist: Artist) {
+    const artists: Artist[] = this.artistsSubject.value;
+    const updatedArtists: Artist[] = artists.map((u) => {
+      return u.id === artist.id ? Object.assign({}, artist) : u;
+    });
+    this.update(updatedArtists);
+  }
+
+  deleteArtist(artist: Artist) {
+    const artists: Artist[] = this.artistsSubject.value;
+    const updatedArtists: Artist[] = artists.filter((c) => c.id !== artist.id);
+    this.update(updatedArtists);
+  }
+
+  update(artists: Artist[]) {
+    this.artistsSubject.next(artists);
   }
 }

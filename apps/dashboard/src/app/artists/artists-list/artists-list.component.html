@@ -1,1 +1,28 @@
-<p>artists-list works!</p>
+<mat-card>
+  <mat-card-title> Artists </mat-card-title>
+  <mat-card-content>
+    <mat-list data-cy="artists-list">
+      <mat-list-item
+        *ngFor="let artist of artists"
+        attr.data-cy="artist-{{ artist.id }}-item"
+        class="mat-list-option"
+        (click)="selected.emit(artist)"
+        data-cy="list-item"
+      >
+        <span matLine attr.data-cy="artist-{{ artist.id }}-item-title">{{
+          artist.title
+        }}</span>
+        <button
+          *ngIf="!readonly"
+          attr.data-cy="delete-artist-{{ artist.id }}-btn"
+          mat-icon-button
+          type="button"
+          color="warn"
+          (click)="deleted.emit(artist); $event.stopImmediatePropagation()"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

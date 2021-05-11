@@ -1,1 +1,18 @@
-<p>artists works!</p>
+<div class="component-container">
+  <div class="list-component">
+    <bba-artists-list
+      [artists]="artists$ | async"
+      (selected)="selectArtist($event)"
+      (deleted)="deleteArtist($event)"
+    >
+    </bba-artists-list>
+  </div>
+  <div class="details-component">
+    <bba-artist-details
+      [artist]="selectedArtist$ | async"
+      (saved)="saveArtist($event)"
+      (cancelled)="resetForm()"
+    >
+    </bba-artist-details>
+  </div>
+</div>
