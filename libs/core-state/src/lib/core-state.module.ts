@@ -1,20 +1,31 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
+import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromArtists from './artists/artists.reducer';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RootStoreConfig, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { reducers } from '.';
+
 import { ArtistsEffects } from './artists/artists.effects';
-import { ArtistsFacade } from './artists/artists.facade';
+
+const STORE_NAME = 'bba-store';
+const storeConfig: RootStoreConfig<any> = {
+  runtimeChecks: {
+    strictActionImmutability: true,
+    strictActionSerializability: true,
+    strictStateImmutability: true,
+    strictStateSerializability: true,
+  },
+};
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(
-      fromArtists.ARTISTS_FEATURE_KEY,
-      fromArtists.reducer
-    ),
-    EffectsModule.forFeature([ArtistsEffects]),
+    StoreModule.forRoot(reducers, storeConfig),
+    EffectsModule.forRoot([ArtistsEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, name: STORE_NAME }),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
   ],
-  providers: [ArtistsFacade],
 })
 export class CoreStateModule {}

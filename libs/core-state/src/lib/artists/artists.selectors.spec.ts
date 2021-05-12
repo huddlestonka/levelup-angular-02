@@ -1,15 +1,18 @@
-import { ArtistsEntity } from './artists.models';
-import { State, artistsAdapter, initialState } from './artists.reducer';
+import {
+  ArtistsState,
+  artistsAdapter,
+  initialArtistsState,
+} from './artists.reducer';
 import * as ArtistsSelectors from './artists.selectors';
+
+import { Artist } from '@bba/api-interfaces';
+import { mockArtist } from '@bba/testing';
 
 describe('Artists Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getArtistsId = (it) => it['id'];
-  const createArtistsEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as ArtistsEntity);
+  const createArtist = (id: string, name = '') =>
+    ({ ...mockArtist, id: id } as Artist);
 
   let state;
 
@@ -17,12 +20,12 @@ describe('Artists Selectors', () => {
     state = {
       artists: artistsAdapter.setAll(
         [
-          createArtistsEntity('PRODUCT-AAA'),
-          createArtistsEntity('PRODUCT-BBB'),
-          createArtistsEntity('PRODUCT-CCC'),
+          createArtist('PRODUCT-AAA'),
+          createArtist('PRODUCT-BBB'),
+          createArtist('PRODUCT-CCC'),
         ],
         {
-          ...initialState,
+          ...initialArtistsState,
           selectedId: 'PRODUCT-BBB',
           error: ERROR_MSG,
           loaded: true,
@@ -41,7 +44,7 @@ describe('Artists Selectors', () => {
     });
 
     it('getSelected() should return the selected Entity', () => {
-      const result = ArtistsSelectors.getSelected(state);
+      const result = ArtistsSelectors.getSelectedArtist(state);
       const selId = getArtistsId(result);
 
       expect(selId).toBe('PRODUCT-BBB');

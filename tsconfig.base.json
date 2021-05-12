@@ -18,7 +18,9 @@
       "@bba/core-data": ["libs/core-data/src/index.ts"],
       "@bba/core-state": ["libs/core-state/src/index.ts"],
       "@bba/material": ["libs/material/src/index.ts"],
-      "@bba/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@bba/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@env/*": ["apps/dashboard/src/environments/*"],
+      "@bba/testing": ["libs/testing/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

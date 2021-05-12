@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { MaterialModule } from '@bba/material';
 import { FormsModule } from '@angular/forms';
 import { RoutingModule } from './routing.module';
+import { CoreStateModule } from '@bba/core-state';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,12 @@ import { RoutingModule } from './routing.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
     RoutingModule,
-    StoreModule.forRoot({}, {}),
+    CoreStateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

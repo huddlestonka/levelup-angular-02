@@ -46,7 +46,7 @@
       </mat-form-field>
       <mat-form-field
         class="example-chip-list"
-        *ngIf="currentArtist.albums?.length; else noAlbums"
+        *ngIf="checkAlbums(); else noAlbums"
       >
         <mat-label>Albums</mat-label>
         <mat-chip-list #chipList aria-label="Album selection">
@@ -54,9 +54,9 @@
             *ngFor="let al of currentArtist.albums"
             [selectable]="selectable"
             [removable]="removable"
-            (removed)="remove(al.id)"
+            (removed)="remove(al?.id)"
           >
-            {{ al.title }}
+            {{ al?.title }}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
           <input

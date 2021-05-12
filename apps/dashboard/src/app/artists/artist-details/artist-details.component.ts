@@ -28,6 +28,15 @@ export class ArtistDetailsComponent {
   }
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
+  @Output() albumAdded = new EventEmitter();
+
+  checkAlbums() {
+    if (this.currentArtist.albums?.length) {
+      const albums = this.currentArtist.albums.filter((x) => x !== null);
+      if (albums.length) return true;
+    }
+    return false;
+  }
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -35,9 +44,13 @@ export class ArtistDetailsComponent {
 
     // Add album title
     if ((value || '').trim()) {
-      let newAlbum: Album = { id: uuidv4(), title: value };
+      let newAlbum: Album = { id: uuidv4(), title: value.trim() };
       newAlbum = Object.assign({}, newAlbum);
       this.currentArtist.albums = [...this.currentArtist.albums, newAlbum];
+      for (let index = 0; index < this.currentArtist.albums.length; index++) {
+        const element = this.currentArtist.albums[index];
+      }
+      this.albumAdded.emit(this.currentArtist);
     }
 
     // Reset the input value
@@ -47,6 +60,7 @@ export class ArtistDetailsComponent {
   }
 
   remove(id: string): void {
+    if (id === null || id === undefined) return;
     this.currentArtist.albums = this.currentArtist.albums.filter(
       (a) => a.id !== id
     );

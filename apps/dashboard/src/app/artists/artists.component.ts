@@ -7,22 +7,33 @@ import { ArtistsFacade } from '@bba/core-state';
   selector: 'bba-artists',
   templateUrl: './artists.component.html',
   styleUrls: ['./artists.component.scss'],
-  providers: [ArtistsFacade],
 })
 export class ArtistsComponent implements OnInit {
-  artists$: Observable<Artist[]> = this.artistsFacade.currentArtists$;
-  selectedArtist$: Observable<Artist> = this.artistsFacade.selectedArtist$;
+  artists$: Observable<Artist[]> = this.artistsFacade.allArtists$;
+  selectedArtist$ = this.artistsFacade.selectedArtist$;
 
   constructor(private artistsFacade: ArtistsFacade) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadArtists();
+    this.artistsFacade.mutations$.subscribe((_) => this.reset());
+  }
+
+  reset() {
+    this.loadArtists();
+    this.artistsFacade.selectArtist(null);
+  }
 
   resetForm() {
     this.artistsFacade.selectArtist(null);
   }
 
+  loadArtists() {
+    this.artistsFacade.loadArtists();
+  }
+
   selectArtist(artist: Artist) {
-    this.artistsFacade.selectArtist(artist);
+    this.artistsFacade.selectArtist(artist.id);
   }
 
   saveArtist(artist: Artist) {

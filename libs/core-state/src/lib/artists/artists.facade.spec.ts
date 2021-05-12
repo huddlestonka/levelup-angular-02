@@ -1,118 +1,106 @@
-import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { readFirst } from '@nrwl/angular/testing';
+import { ActionsSubject } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
-
-import { NxModule } from '@nrwl/angular';
-
-import { ArtistsEntity } from './artists.models';
-import { ArtistsEffects } from './artists.effects';
 import { ArtistsFacade } from './artists.facade';
-
-import * as ArtistsSelectors from './artists.selectors';
 import * as ArtistsActions from './artists.actions';
-import {
-  ARTISTS_FEATURE_KEY,
-  State,
-  initialState,
-  reducer,
-} from './artists.reducer';
+import { initialArtistsState } from './artists.reducer';
 
-interface TestSchema {
-  artists: State;
-}
+import { mockArtist } from '@bba/testing';
 
 describe('ArtistsFacade', () => {
   let facade: ArtistsFacade;
-  let store: Store<TestSchema>;
-  const createArtistsEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as ArtistsEntity);
+  let actionSubject;
+  const mockActionsSubject = new ActionsSubject();
+  let store: MockStore;
 
-  beforeEach(() => {});
-
-  describe('used in NgModule', () => {
-    beforeEach(() => {
-      @NgModule({
-        imports: [
-          StoreModule.forFeature(ARTISTS_FEATURE_KEY, reducer),
-          EffectsModule.forFeature([ArtistsEffects]),
-        ],
-        providers: [ArtistsFacade],
-      })
-      class CustomFeatureModule {}
-
-      @NgModule({
-        imports: [
-          NxModule.forRoot(),
-          StoreModule.forRoot({}),
-          EffectsModule.forRoot([]),
-          CustomFeatureModule,
-        ],
-      })
-      class RootModule {}
-      TestBed.configureTestingModule({ imports: [RootModule] });
-
-      store = TestBed.inject(Store);
-      facade = TestBed.inject(ArtistsFacade);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        ArtistsFacade,
+        provideMockStore({ initialState: initialArtistsState }),
+        { provide: ActionsSubject, useValue: mockActionsSubject },
+      ],
     });
 
-    /**
-     * The initially generated facade::loadAll() returns empty array
-     */
-    it('loadAll() should return empty list with loaded == true', async (done) => {
-      try {
-        let list = await readFirst(facade.allArtists$);
-        let isLoaded = await readFirst(facade.loaded$);
+    facade = TestBed.inject(ArtistsFacade);
+    actionSubject = TestBed.inject(ActionsSubject);
+    store = TestBed.inject(MockStore);
+  });
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(false);
+  it('should be created', () => {
+    expect(facade).toBeTruthy();
+  });
 
-        facade.init();
+  it('should have mutations', (done) => {
+    const action = ArtistsActions.createArtist({ artist: mockArtist });
+    actionSubject.next(action);
 
-        list = await readFirst(facade.allArtists$);
-        isLoaded = await readFirst(facade.loaded$);
+    facade.mutations$.subscribe((result) => {
+      expect(result).toBe(action);
+      done();
+    });
+  });
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(true);
+  describe('should dispatch', () => {
+    it('select on select(artist.id)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
 
-        done();
-      } catch (err) {
-        done.fail(err);
-      }
+      facade.selectArtist(mockArtist.id);
+
+      const action = ArtistsActions.selectArtist({ selectedId: mockArtist.id });
+
+      expect(spy).toHaveBeenCalledWith(action);
     });
 
-    /**
-     * Use `loadArtistsSuccess` to manually update list
-     */
-    it('allArtists$ should return the loaded list; and loaded flag == true', async (done) => {
-      try {
-        let list = await readFirst(facade.allArtists$);
-        let isLoaded = await readFirst(facade.loaded$);
+    it('loadArtists on loadArtists()', () => {
+      const spy = jest.spyOn(store, 'dispatch');
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(false);
+      facade.loadArtists();
 
-        store.dispatch(
-          ArtistsActions.loadArtistsSuccess({
-            artists: [createArtistsEntity('AAA'), createArtistsEntity('BBB')],
-          })
-        );
+      const action = ArtistsActions.loadArtists();
 
-        list = await readFirst(facade.allArtists$);
-        isLoaded = await readFirst(facade.loaded$);
+      expect(spy).toHaveBeenCalledWith(action);
+    });
 
-        expect(list.length).toBe(2);
-        expect(isLoaded).toBe(true);
+    it('loadArtist on loadArtist(artist.id)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
 
-        done();
-      } catch (err) {
-        done.fail(err);
-      }
+      facade.loadArtist(mockArtist.id);
+
+      const action = ArtistsActions.loadArtist({ artistId: mockArtist.id });
+
+      expect(spy).toHaveBeenCalledWith(action);
+    });
+
+    it('createArtist on createArtist(artist)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
+
+      facade.createArtist(mockArtist);
+
+      const action = ArtistsActions.createArtist({ artist: mockArtist });
+
+      expect(spy).toHaveBeenCalledWith(action);
+    });
+
+    it('updateArtist on updateArtist(artist)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
+
+      facade.updateArtist(mockArtist);
+
+      const action = ArtistsActions.updateArtist({ artist: mockArtist });
+
+      expect(spy).toHaveBeenCalledWith(action);
+    });
+
+    it('delete on delete(model)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
+
+      facade.deleteArtist(mockArtist);
+
+      const action = ArtistsActions.deleteArtist({ artist: mockArtist });
+
+      expect(spy).toHaveBeenCalledWith(action);
     });
   });
 });
