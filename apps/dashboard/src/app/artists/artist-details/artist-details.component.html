@@ -1,1 +1,93 @@
-<p>artist-details works!</p>
+<mat-card>
+  <mat-card-title data-cy="artist-details-title">
+    <span *ngIf="currentArtist.id; else elseBlock">
+      Editing {{ originalTitle }}
+    </span>
+    <ng-template #elseBlock> Select Artist </ng-template>
+  </mat-card-title>
+  <form
+    #form="ngForm"
+    (submit)="saved.emit(currentArtist)"
+    data-cy="artist-form"
+  >
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Title"
+          data-cy="artist-form-title"
+          [(ngModel)]="currentArtist.title"
+          type="text"
+          name="title"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Genre"
+          data-cy="artist-form-genre"
+          [(ngModel)]="currentArtist.genre"
+          type="text"
+          name="genre"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Years Active"
+          data-cy="artist-form-years-active"
+          [(ngModel)]="currentArtist.yearsActive"
+          type="text"
+          name="years-active"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field
+        class="example-chip-list"
+        *ngIf="currentArtist.albums?.length; else noAlbums"
+      >
+        <mat-label>Albums</mat-label>
+        <mat-chip-list #chipList aria-label="Album selection">
+          <mat-chip
+            *ngFor="let al of currentArtist.albums"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(al.id)"
+          >
+            {{ al.title }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="New album..."
+            #albumInput
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)"
+          />
+        </mat-chip-list>
+      </mat-form-field>
+      <ng-template #noAlbums> No Albums </ng-template>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        [disabled]="form.invalid"
+        type="submit"
+        mat-button
+        color="primary"
+        data-cy="artist-form-save"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        mat-button
+        (click)="form.reset(); cancelled.emit()"
+        data-cy="artist-form-cancel"
+      >
+        Cancel
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

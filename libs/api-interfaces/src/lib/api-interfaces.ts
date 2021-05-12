@@ -15,9 +15,9 @@ export interface Artist extends BaseEntity {
 
 export interface Album extends BaseEntity {
   title: string;
-  songs: string[];
+  songs?: string[];
   awards?: string[];
-  year: string;
+  year?: string;
 }
 
 export interface Singles extends BaseEntity {
