@@ -62,6 +62,8 @@
           <input
             placeholder="New album..."
             #albumInput
+            autocomplete="off"
+            matTooltip="Press enter and click save to add an album"
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             (matChipInputTokenEnd)="add($event)"

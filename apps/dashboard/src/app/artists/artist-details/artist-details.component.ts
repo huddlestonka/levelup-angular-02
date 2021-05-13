@@ -3,6 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -28,34 +29,32 @@ export class ArtistDetailsComponent {
   }
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
-  @Output() albumAdded = new EventEmitter();
 
   checkAlbums() {
-    if (this.currentArtist.albums?.length) {
-      const albums = this.currentArtist.albums.filter((x) => x !== null);
-      if (albums.length) return true;
-    }
-    return false;
+    return (
+      [null, undefined, ''].includes(this.currentArtist.id) ||
+      this.currentArtist.albums?.length > 0
+    );
   }
 
   add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
+    const value = (event.value || '').trim();
+    console.log('value: ', value);
 
     // Add album title
-    if ((value || '').trim()) {
+    if (value) {
       let newAlbum: Album = { id: uuidv4(), title: value.trim() };
       newAlbum = Object.assign({}, newAlbum);
-      this.currentArtist.albums = [...this.currentArtist.albums, newAlbum];
-      for (let index = 0; index < this.currentArtist.albums.length; index++) {
-        const element = this.currentArtist.albums[index];
+      if (this.currentArtist.albums?.length > 0) {
+        this.currentArtist.albums = [...this.currentArtist.albums, newAlbum];
+      } else {
+        this.currentArtist.albums = [newAlbum];
       }
-      this.albumAdded.emit(this.currentArtist);
     }
 
     // Reset the input value
-    if (input) {
-      input.value = '';
+    if (event.input) {
+      event.input.value = '';
     }
   }
 

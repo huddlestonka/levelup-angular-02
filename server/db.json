@@ -10,29 +10,53 @@
           "id": "56789f40-b0fb-4aa6-4e88-376b4edfm8he",
           "title": "Twenty One Pilots",
           "year": "2009",
-          "awards": ["Nope"],
-          "songs": ["Fall Away", "Taxi Cab", "Implicit Demand for Proof"]
+          "awards": [
+            "Nope"
+          ],
+          "songs": [
+            "Fall Away",
+            "Taxi Cab",
+            "Implicit Demand for Proof"
+          ]
         },
         {
           "id": "56789f30-b0fb-4aa6-8e88-376b4edfm8he",
           "title": "Regional at Best",
           "year": "2011",
-          "awards": ["Not enough..."],
-          "songs": ["All the best"]
+          "awards": [
+            "Not enough..."
+          ],
+          "songs": [
+            "All the best"
+          ]
         },
         {
           "id": "56789f210-b0fb-4aa6-8e88-376b4edfm8he",
           "title": "Vessel",
           "year": "2013",
-          "awards": ["So many..."],
-          "songs": ["Holding on to You", "Migraine", "Car Radio", "Trees"]
+          "awards": [
+            "So many..."
+          ],
+          "songs": [
+            "Holding on to You",
+            "Migraine",
+            "Car Radio",
+            "Trees"
+          ]
         },
         {
           "id": "56789f40-b0fb-4aa6-8e88-376b4edfm6hj",
           "title": "Blurryface",
           "year": "2015",
-          "awards": ["Alt Press Album Of The Year", "Top Rock Album"],
-          "songs": ["Heavydirtysoul", "Stressed Out", "Ride"]
+          "awards": [
+            "Alt Press Album Of The Year",
+            "Top Rock Album"
+          ],
+          "songs": [
+            "Heavydirtysoul",
+            "Stressed Out",
+            "Ride"
+          ]
         },
         {
           "id": "56789f40-b0fb-4aa6-8e88-376b4edf8j23",
@@ -42,14 +66,24 @@
             "Alt Press - 50 Best Albums of 2018",
             "Billboard - The 50 Best Albums of 2018"
           ],
-          "songs": ["Jumpsuit", "Levitate", "Morph"]
+          "songs": [
+            "Jumpsuit",
+            "Levitate",
+            "Morph"
+          ]
         },
         {
           "id": "56789f40-b0fb-4gg6-8e88-37fb4edfm8he",
           "title": "Scaled and Icy",
           "year": "2021",
-          "awards": [""],
-          "songs": ["Good Day", "Choker", "Shy Away"]
+          "awards": [
+            ""
+          ],
+          "songs": [
+            "Good Day",
+            "Choker",
+            "Shy Away"
+          ]
         }
       ],
       "singles": [
@@ -76,7 +110,10 @@
           "title": "Fueled by Ramen"
         }
       ],
-      "members": ["Tyler Joseph", "Josh Dun"]
+      "members": [
+        "Tyler Joseph",
+        "Josh Dun"
+      ]
     },
     {
       "id": "56789f40-b0db-4aa6-8e88-376kjhdfm8he",
@@ -113,6 +150,12 @@
           "title": "I, I"
         }
       ]
+    },
+    {
+      "id": "b4e0b9ef-21f7-45dd-8b68-9901b2e44fa8",
+      "title": "The Beatles",
+      "genre": "Rock",
+      "yearsActive": "forever"
     }
   ]
 }

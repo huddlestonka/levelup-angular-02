@@ -47,10 +47,6 @@ export const getSelectedArtist = createSelector(
       title: '',
       genre: '',
       yearsActive: '',
-      albums: [null],
-      labels: [null],
-      members: [null],
-      singles: [null],
     };
 
     return selectedId ? entities[selectedId] : emptyArtist;

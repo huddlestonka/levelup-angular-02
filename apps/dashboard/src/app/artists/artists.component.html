@@ -10,7 +10,6 @@
   <div class="details-component">
     <bba-artist-details
       [artist]="selectedArtist$ | async"
-      (albumAdded)="saveArtist($event)"
       (saved)="saveArtist($event)"
       (cancelled)="resetForm()"
     >
