@@ -39,7 +39,6 @@ export class ArtistDetailsComponent {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    console.log('value: ', value);
 
     // Add album title
     if (value) {

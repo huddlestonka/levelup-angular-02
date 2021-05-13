@@ -1,1 +1,24 @@
-<p>home works!</p>
+<div class="home-container" data-cy="home-artist-cards">
+  <mat-card
+    *ngFor="let artist of artists$ | async"
+    attr.data-cy="home-artist-{{ artist.id }}-card"
+  >
+    <mat-card-header>
+      <mat-card-title attr.data-cy="home-artist-{{ artist.id }}-title">
+        {{ artist.title }}
+      </mat-card-title>
+      <mat-card-subtitle>{{ artist.genre }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngIf="artist.albums?.length; else noAlbums">
+      <mat-list data-cy="artists-list">
+        <mat-list-item
+          *ngFor="let album of artist.albums"
+          attr.data-cy="home-artist-{{ album.id }}-artists"
+        >
+          {{ album.title }}
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <ng-template #noAlbums> No Albums </ng-template>
+  </mat-card>
+</div>
