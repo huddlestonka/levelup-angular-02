@@ -38,6 +38,10 @@ Specifically, this dashboard app features CRUD functionality on an Artist entity
 
 There is an additional feature involving the albums that should allow users to dynamically create/delete album titles for a given artist that has albums. This feature is still in development.
 
+## See It Live
+
+[Visit Artist Dashboard](https://levelup-angular-02-artists.surge.sh/)
+
 ## Getting Started
 
 Run `npm install`.
