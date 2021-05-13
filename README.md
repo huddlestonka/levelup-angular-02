@@ -36,7 +36,7 @@ Specifically, this dashboard app features CRUD functionality on an Artist entity
     }
 ```
 
-There is an additional feature involving the albums that should allow users to dynamically create/delete album titles for a given artist that has albums. This feature is still in development.
+There is an additional feature involving the albums that allows users to dynamically create/delete album titles for any given artist that has albums.
 
 ## See It Live
 
