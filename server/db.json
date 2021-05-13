@@ -10,53 +10,29 @@
           "id": "56789f40-b0fb-4aa6-4e88-376b4edfm8he",
           "title": "Twenty One Pilots",
           "year": "2009",
-          "awards": [
-            "Nope"
-          ],
-          "songs": [
-            "Fall Away",
-            "Taxi Cab",
-            "Implicit Demand for Proof"
-          ]
+          "awards": ["Nope"],
+          "songs": ["Fall Away", "Taxi Cab", "Implicit Demand for Proof"]
         },
         {
           "id": "56789f30-b0fb-4aa6-8e88-376b4edfm8he",
           "title": "Regional at Best",
           "year": "2011",
-          "awards": [
-            "Not enough..."
-          ],
-          "songs": [
-            "All the best"
-          ]
+          "awards": ["Not enough..."],
+          "songs": ["All the best"]
         },
         {
           "id": "56789f210-b0fb-4aa6-8e88-376b4edfm8he",
           "title": "Vessel",
           "year": "2013",
-          "awards": [
-            "So many..."
-          ],
-          "songs": [
-            "Holding on to You",
-            "Migraine",
-            "Car Radio",
-            "Trees"
-          ]
+          "awards": ["So many..."],
+          "songs": ["Holding on to You", "Migraine", "Car Radio", "Trees"]
         },
         {
           "id": "56789f40-b0fb-4aa6-8e88-376b4edfm6hj",
           "title": "Blurryface",
           "year": "2015",
-          "awards": [
-            "Alt Press Album Of The Year",
-            "Top Rock Album"
-          ],
-          "songs": [
-            "Heavydirtysoul",
-            "Stressed Out",
-            "Ride"
-          ]
+          "awards": ["Alt Press Album Of The Year", "Top Rock Album"],
+          "songs": ["Heavydirtysoul", "Stressed Out", "Ride"]
         },
         {
           "id": "56789f40-b0fb-4aa6-8e88-376b4edf8j23",
@@ -66,24 +42,14 @@
             "Alt Press - 50 Best Albums of 2018",
             "Billboard - The 50 Best Albums of 2018"
           ],
-          "songs": [
-            "Jumpsuit",
-            "Levitate",
-            "Morph"
-          ]
+          "songs": ["Jumpsuit", "Levitate", "Morph"]
         },
         {
           "id": "56789f40-b0fb-4gg6-8e88-37fb4edfm8he",
           "title": "Scaled and Icy",
           "year": "2021",
-          "awards": [
-            ""
-          ],
-          "songs": [
-            "Good Day",
-            "Choker",
-            "Shy Away"
-          ]
+          "awards": [""],
+          "songs": ["Good Day", "Choker", "Shy Away"]
         }
       ],
       "singles": [
@@ -110,10 +76,7 @@
           "title": "Fueled by Ramen"
         }
       ],
-      "members": [
-        "Tyler Joseph",
-        "Josh Dun"
-      ]
+      "members": ["Tyler Joseph", "Josh Dun"]
     },
     {
       "id": "56789f40-b0db-4aa6-8e88-376kjhdfm8he",
@@ -128,36 +91,27 @@
       "yearsActive": "1997-2000 * 2014-present"
     },
     {
-      "id": "b2ac8cd0-ae3a-437a-8e8a-666346cfb5ce",
-      "title": "test",
-      "genre": "test",
-      "yearsActive": "test",
+      "id": "ddc2d95c-83ea-4c57-84e9-986fc162123f",
+      "title": "Bon Iver",
+      "genre": "Indie Folk",
+      "yearsActive": "2006-present",
       "albums": [
         {
-          "id": "3e24734b-6b57-45fa-ac48-b377bd843c29",
-          "title": "test"
+          "id": "47cc92b4-0406-478c-8071-65d6a41d62f8",
+          "title": "For Emma, Forever Ago"
         },
         {
-          "id": "8baa9ba4-4503-4151-8ec8-e14a4c568f32",
-          "title": "test2"
+          "id": "073957d7-e8c1-499d-8c3d-3189645b4a6f",
+          "title": "Bon Iver"
         },
         {
-          "id": "e065e26d-e227-4f13-b4ed-a5a31e0bb4f1",
-          "title": "test3"
+          "id": "cc6bbbcc-7581-44ad-96aa-842e60c27409",
+          "title": "22, A Million"
         },
         {
-          "id": "87a30abc-fbb9-454e-bfe6-ce1d23f83470",
-          "title": "test4"
+          "id": "f1c770ee-72ee-4bf6-9059-f0e0ec119eae",
+          "title": "I, I"
         }
-      ],
-      "labels": [
-        null
-      ],
-      "members": [
-        null
-      ],
-      "singles": [
-        null
       ]
     }
   ]
